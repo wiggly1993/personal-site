@@ -1,0 +1,66 @@
+---
+// Skills = every tag used by a project, grouped by the project's category.
+import Reveal from "../ui/Reveal.astro";
+import { getProjects } from "../../lib/projects";
+import { CATEGORIES } from "../../config/categories";
+
+const projects = await getProjects();
+const groups = CATEGORIES.map((category) => {
+  const tags = projects.filter((p) => p.data.category === category).flatMap((p) => p.data.tags);
+  return { category, tags: [...new Set(tags)] };
+}).filter((g) => g.tags.length > 0);
+---
+
+<section id="skills" class="section section--dark" aria-labelledby="skills-title">
+  <Reveal class="container">
+    <h2 id="skills-title" class="section-title">Skills.</h2>
+    <p class="section-lead">Everything here comes straight from the projects above.</p>
+  </Reveal>
+  <div class="container-wide skills">
+    {
+      groups.map((group, i) => (
+        <Reveal class="skills__group" delay={(i % 3) * 80}>
+          <h3 class="skills__heading">{group.category}</h3>
+          <ul class="skills__tags" role="list">
+            {group.tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        </Reveal>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 1.5rem;
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+  }
+  .skills :global(.skills__group) {
+    background: var(--color-bg-dark-alt);
+    border-radius: var(--radius-card);
+    padding: 2rem;
+  }
+  .skills__heading {
+    font-size: 1.3125rem;
+    color: var(--color-text-on-dark);
+  }
+  .skills__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+  }
+  .skills__tags li {
+    font-size: var(--fs-small);
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border-dark);
+    color: var(--color-text-secondary-on-dark);
+  }
+</style>

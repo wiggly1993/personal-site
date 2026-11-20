@@ -1,0 +1,120 @@
+---
+// Grid of project cards with category filter chips.
+// Default (homepage): all non-featured projects. Pass `projects` to show a different list.
+// Without JS every card is visible and the chips stay hidden.
+import ProjectCard from "../ui/ProjectCard.astro";
+import Reveal from "../ui/Reveal.astro";
+import { getProjects, type Project } from "../../lib/projects";
+import { CATEGORIES } from "../../config/categories";
+
+interface Props {
+  projects?: Project[];
+  title?: string;
+  lead?: string;
+  headingLevel?: "h1" | "h2";
+}
+
+const {
+  projects = (await getProjects()).filter((p) => !p.data.featured),
+  title = "More projects.",
+  lead = "Vision, sequence models, generative models and explainable AI.",
+  headingLevel: Heading = "h2",
+} = Astro.props;
+
+// Only show chips for categories that actually have projects here.
+const categories = CATEGORIES.filter((c) => projects.some((p) => p.data.category === c));
+---
+
+{
+  projects.length > 0 && (
+    <section id="projects" class="grid-section section section--alt" aria-labelledby="grid-title">
+      <Reveal class="container">
+        <Heading id="grid-title" class="section-title">{title}</Heading>
+        <p class="section-lead">{lead}</p>
+      </Reveal>
+      <div class="container-wide">
+        {categories.length > 1 && (
+          <div class="chips" role="group" aria-label="Filter by category">
+            <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+            {categories.map((c) => (
+              <button type="button" class="chip" data-filter={c} aria-pressed="false">{c}</button>
+            ))}
+          </div>
+        )}
+        <ul class="grid" role="list">
+          {projects.map((project) => (
+            <li class="grid__item" data-category={project.data.category}>
+              <ProjectCard project={project} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<script>
+  // Category filter: hide cards whose category doesn't match the pressed chip.
+  document.querySelectorAll<HTMLElement>(".grid-section").forEach((section) => {
+    const chips = section.querySelectorAll<HTMLButtonElement>(".chip");
+    const items = section.querySelectorAll<HTMLElement>(".grid__item");
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const filter = chip.dataset.filter;
+        chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+        items.forEach((item) => {
+          item.hidden = filter !== "all" && item.dataset.category !== filter;
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .chips {
+    display: none; /* shown only when JS runs (see :global(.js) below) */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+  }
+  :global(.js) .chips {
+    display: flex;
+  }
+  .chip {
+    font: inherit;
+    font-size: var(--fs-small);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .chip:hover {
+    border-color: var(--color-text-secondary);
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--color-text);
+    border-color: var(--color-text);
+    color: var(--color-bg);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+  }
+  .grid__item {
+    display: flex;
+  }
+  .grid__item > :global(*) {
+    flex: 1;
+  }
+  .grid__item[hidden] {
+    display: none;
+  }
+</style>

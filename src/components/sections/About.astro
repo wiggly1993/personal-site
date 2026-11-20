@@ -1,0 +1,50 @@
+---
+// Short bio + education. Text lives in src/config/site.ts.
+import Reveal from "../ui/Reveal.astro";
+import { site } from "../../config/site";
+---
+
+<section id="about" class="section" aria-labelledby="about-title">
+  <Reveal class="container about">
+    <h2 id="about-title" class="section-title">About me.</h2>
+    <p class="section-lead about__bio">{site.bio || site.tagline}</p>
+    <div class="about__edu">
+      <p class="about__label">Education</p>
+      <p class="about__school">{site.education.school}</p>
+      {site.education.detail && <p class="about__detail">{site.education.detail}</p>}
+    </div>
+  </Reveal>
+</section>
+
+<style>
+  .about {
+    text-align: center;
+  }
+  .about__bio {
+    max-width: 36ch;
+  }
+  .about__edu {
+    display: inline-block;
+    margin-top: 3rem;
+    padding: 2rem 2.5rem;
+    border-radius: var(--radius-card);
+    background: var(--color-bg-alt);
+  }
+  .about__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-secondary);
+  }
+  .about__school {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--ls-heading);
+  }
+  .about__detail {
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+  }
+</style>

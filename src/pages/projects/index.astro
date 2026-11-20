@@ -1,0 +1,17 @@
+---
+// All published projects in one filterable grid.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectGrid from "../../components/sections/ProjectGrid.astro";
+import { getProjects } from "../../lib/projects";
+
+const projects = await getProjects();
+---
+
+<BaseLayout title="Projects" description="All AI and deep-learning projects by Beniamin Jablonski, filterable by category.">
+  <ProjectGrid
+    projects={projects}
+    title="All projects."
+    lead={`${projects.length} projects across LLMs, vision, generative models, sequence models, explainable AI and reinforcement learning.`}
+    headingLevel="h1"
+  />
+</BaseLayout>

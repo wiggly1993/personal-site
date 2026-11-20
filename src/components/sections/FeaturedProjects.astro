@@ -1,0 +1,35 @@
+---
+// Big tiles for every project with `featured: true`, in `order`.
+import ProjectTile from "../ui/ProjectTile.astro";
+import Reveal from "../ui/Reveal.astro";
+import { getProjects } from "../../lib/projects";
+
+const featured = (await getProjects()).filter((p) => p.data.featured);
+---
+
+{
+  featured.length > 0 && (
+    <section id="featured" class="featured section" aria-labelledby="featured-title">
+      <Reveal class="container">
+        <h2 id="featured-title" class="section-title">Featured work.</h2>
+        <p class="section-lead">A few projects I'm proud of — from LLMs to robots that learn to walk.</p>
+      </Reveal>
+      <div class="container-wide featured__list">
+        {featured.map((project) => (
+          <ProjectTile project={project} />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .featured {
+    background: var(--color-bg);
+  }
+  .featured__list {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
+</style>

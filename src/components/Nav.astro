@@ -1,0 +1,86 @@
+---
+// Sticky translucent top bar. Links come from src/config/site.ts.
+import { site } from "../config/site";
+const path = Astro.url.pathname;
+---
+
+<header class="nav">
+  <nav class="nav__inner" aria-label="Main">
+    <a class="nav__brand" href="/">{site.name}</a>
+    <ul class="nav__links">
+      {
+        site.nav.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              aria-current={path.startsWith(link.href) && !link.href.includes("#") ? "page" : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--nav-height);
+    background: var(--nav-bg-dark);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+  .nav__inner {
+    height: 100%;
+    max-width: calc(var(--width-text) + 2 * var(--gutter));
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .nav__brand {
+    color: var(--color-text-on-dark);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .nav__links {
+    display: flex;
+    gap: clamp(0.875rem, 3vw, 2.25rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav__links a {
+    color: var(--color-text-on-dark);
+    opacity: 0.8;
+    font-size: var(--fs-nav);
+    transition: opacity 0.2s;
+  }
+  .nav__links a:hover,
+  .nav__links a[aria-current="page"] {
+    opacity: 1;
+    text-decoration: none;
+  }
+  .nav a:hover {
+    text-decoration: none;
+  }
+  @media (max-width: 420px) {
+    .nav__brand {
+      font-size: 0.8125rem;
+    }
+    .nav__links {
+      gap: 0.75rem;
+    }
+    .nav__links a {
+      font-size: 0.75rem;
+    }
+  }
+</style>

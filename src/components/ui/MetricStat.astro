@@ -1,0 +1,36 @@
+---
+// Big-number stat, e.g. "49% → 75%" over "well-formed diffs".
+interface Props {
+  value: string;
+  label: string;
+}
+const { value, label } = Astro.props;
+---
+
+<div class="metric">
+  <p class="metric__value gradient-text">{value}</p>
+  <p class="metric__label">{label}</p>
+</div>
+
+<style>
+  .metric {
+    text-align: center;
+    min-width: 8rem;
+  }
+  .metric__value {
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: var(--ls-hero);
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .metric__label {
+    margin-top: 0.25rem;
+    font-size: var(--fs-small);
+    color: var(--color-text-secondary);
+  }
+  :global(.theme-dark) .metric__label,
+  :global(.section--dark) .metric__label {
+    color: var(--color-text-secondary-on-dark);
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page not found" description="This page doesn't exist.">
+  <section class="section section--dark notfound">
+    <div class="container">
+      <p class="notfound__code gradient-text">404</p>
+      <h1 class="section-title">This page took a wrong turn.</h1>
+      <p class="section-lead">It may have moved, or it never existed.</p>
+      <p class="notfound__links">
+        <a class="link-more" href="/">Home</a>
+        <a class="link-more" href="/projects/">All projects</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    min-height: calc(100svh - var(--nav-height) - 60px);
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  .notfound__code {
+    font-size: clamp(5rem, 3rem + 10vw, 10rem);
+    font-weight: 700;
+    letter-spacing: var(--ls-hero);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .notfound__links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+</style>

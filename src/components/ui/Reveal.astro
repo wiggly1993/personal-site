@@ -1,0 +1,13 @@
+---
+// Wrap anything to fade it up when it scrolls into view (see scripts/reveal.ts).
+interface Props {
+  as?: "div" | "section" | "article" | "li" | "figure";
+  class?: string;
+  delay?: number; // ms, for staggering siblings
+}
+const { as: Tag = "div", class: className, delay = 0 } = Astro.props;
+---
+
+<Tag class:list={["reveal", className]} style={delay ? `transition-delay: ${delay}ms` : undefined}>
+  <slot />
+</Tag>

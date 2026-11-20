@@ -1,0 +1,61 @@
+---
+// Contact links from src/config/site.ts. Empty values are hidden.
+import Reveal from "../ui/Reveal.astro";
+import { site } from "../../config/site";
+
+const { email, github, linkedin } = site.contact;
+const links = [
+  email && { label: "Email", value: email, href: `mailto:${email}` },
+  github && { label: "GitHub", value: github.replace(/^https?:\/\/(www\.)?/, ""), href: github },
+  linkedin && { label: "LinkedIn", value: linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: linkedin },
+].filter((l): l is { label: string; value: string; href: string } => Boolean(l));
+---
+
+<section id="contact" class="section section--alt" aria-labelledby="contact-title">
+  <Reveal class="container contact">
+    <h2 id="contact-title" class="section-title">Let's talk.</h2>
+    <p class="section-lead">Questions, ideas or opportunities — I'd love to hear from you.</p>
+    {
+      links.length > 0 && (
+        <ul class="contact__links" role="list">
+          {links.map((l) => (
+            <li>
+              <span class="contact__label">{l.label}</span>
+              <a class="link-more" href={l.href}>{l.value}</a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </Reveal>
+</section>
+
+<style>
+  .contact {
+    text-align: center;
+  }
+  .contact__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem 4rem;
+    list-style: none;
+    margin: 3rem 0 0;
+    padding: 0;
+  }
+  .contact__links li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .contact__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-secondary);
+  }
+  .contact__links a {
+    font-size: var(--fs-lead);
+  }
+</style>

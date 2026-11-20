@@ -1,0 +1,119 @@
+---
+// Big Apple-style tile for a featured project.
+// Works with or without a cover image: without one, the gradient title and metrics carry it.
+import { Image } from "astro:assets";
+import MetricStat from "./MetricStat.astro";
+import Reveal from "./Reveal.astro";
+import { coverAlt, type Project } from "../../lib/projects";
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+const { title, subtitle, category, metrics, cover, theme } = project.data;
+const href = `/projects/${project.id}/`;
+---
+
+<article class:list={["tile", `theme-${theme}`, { "tile--no-cover": !cover }]}>
+  <Reveal class="tile__text">
+    <p class="tile__eyebrow">{category}</p>
+    <h3 class="tile__title gradient-text">{title}</h3>
+    <p class="tile__subtitle">{subtitle}</p>
+    {
+      metrics.length > 0 && (
+        <div class="tile__metrics">
+          {metrics.slice(0, 3).map((m) => (
+            <MetricStat value={m.value} label={m.label} />
+          ))}
+        </div>
+      )
+    }
+    <a class="link-more tile__link" href={href}>
+      Learn more<span class="visually-hidden"> about {title}</span>
+    </a>
+  </Reveal>
+  {
+    cover && (
+      <Reveal class="tile__media">
+        <a href={href} tabindex="-1" aria-hidden="true">
+          <Image
+            src={cover}
+            alt={coverAlt(project)}
+            widths={[640, 960, 1280, 1920]}
+            sizes="(max-width: 1100px) 92vw, 1000px"
+          />
+        </a>
+      </Reveal>
+    )
+  }
+</article>
+
+<style>
+  .tile {
+    border-radius: var(--radius-tile);
+    overflow: hidden;
+    padding: clamp(3rem, 2rem + 4vw, 5.5rem) var(--gutter) 0;
+    text-align: center;
+    background: var(--color-bg-alt);
+    color: var(--color-text);
+  }
+  .tile--no-cover {
+    padding-bottom: clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+  .theme-dark {
+    background: var(--color-bg-dark);
+    color: var(--color-text-on-dark);
+  }
+  .theme-dark a {
+    color: var(--color-accent-on-dark);
+  }
+  .tile__eyebrow {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.01em;
+  }
+  .theme-dark .tile__eyebrow {
+    color: var(--color-text-secondary-on-dark);
+  }
+  .tile__title {
+    margin: 0.5rem auto 0;
+    font-size: var(--fs-tile);
+    letter-spacing: var(--ls-hero);
+    max-width: 18ch;
+    /* keep descenders from being clipped by background-clip */
+    padding-bottom: 0.08em;
+  }
+  .tile__subtitle {
+    margin: 0.75rem auto 0;
+    font-size: var(--fs-lead);
+    max-width: 34ch;
+  }
+  .tile__metrics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem clamp(2rem, 5vw, 4rem);
+    margin-top: 2.5rem;
+  }
+  .tile__link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: var(--fs-body);
+  }
+  .tile__media {
+    margin: clamp(2.5rem, 4vw, 3.5rem) auto 0;
+    max-width: 1000px;
+  }
+  .tile__media img {
+    width: 100%;
+    max-height: 560px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    transition: transform 0.6s var(--ease-out);
+  }
+  .tile:hover .tile__media img {
+    transform: scale(var(--hover-scale));
+  }
+</style>
