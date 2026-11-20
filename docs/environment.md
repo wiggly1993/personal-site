@@ -12,5 +12,5 @@
   ```
 - `.venv/` is in `.gitignore` — never commit it.
 - `gh` (GitHub CLI) is not installed and won't be. Create GitHub repos on github.com and connect with `git remote add`.
-- Astro needs Node ≥ 22.23.4. `.nvmrc` pins Node 24 (LTS) for Cloudflare builds.
+- Astro needs Node ≥ 22.23.4. `.nvmrc` pins Node 26 (same as local) for Cloudflare builds.
 - Dev server: `source .venv/bin/activate && npx astro dev --background` (stop with `npx astro dev stop`). See [../AGENTS.md](../AGENTS.md).
