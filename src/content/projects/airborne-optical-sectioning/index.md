@@ -31,7 +31,7 @@ From a drone, a person standing in a forest is mostly hidden by leaves and branc
 
 ## Approach
 
-I worked with a dataset of 30,000 simulated focal stacks, each focused at 0 m, 1 m and 2 m. The network takes these 3 images at a time.
+I worked with a dataset of 30,000 simulated focal stacks, each focused at 0 m, 1 m and 2 m. The network takes these 3 images at a time.
 
 The model is a U-Net-like CNN autoencoder with skip connections and 18.7M parameters. Training is self-supervised: the ground-truth images serve as restoration targets, so no manual labels are needed.
 
