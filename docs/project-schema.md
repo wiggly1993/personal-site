@@ -22,4 +22,6 @@ Astro glob loader: pattern `**/index.md`, base `./src/content/projects`. Ask the
 }
 ```
 
+Cover alt text = the gallery caption of the same image, else the title. Dates are placeholders (`TODO(owner)`) and are not shown on the site.
+
 Projects with no images must still look great: typographic tile with a large gradient title and the metrics. Never use broken placeholders.
