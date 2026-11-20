@@ -1,0 +1,60 @@
+/*
+  Design tokens — restyle the whole site from this one file.
+  Values follow apple.com product pages.
+*/
+:root {
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f5f7;
+  --color-bg-dark: #000000;
+  --color-bg-dark-alt: #1d1d1f;
+  --color-text: #1d1d1f;
+  --color-text-secondary: #6e6e73;
+  --color-text-on-dark: #f5f5f7;
+  --color-text-secondary-on-dark: #a1a1a6;
+  --color-accent: #0071e3;
+  --color-accent-on-dark: #2997ff;
+  --color-border: #d2d2d7;
+  --color-border-dark: #424245;
+  --nav-bg: rgba(251, 251, 253, 0.8);
+  --nav-bg-dark: rgba(22, 22, 23, 0.8);
+
+  /* Gradient used on hero and featured titles */
+  --gradient-title: linear-gradient(90deg, #2997ff 0%, #a259ff 55%, #ff6fb1 100%);
+  --gradient-title-light: linear-gradient(90deg, #0071e3 0%, #7b3fe4 60%, #c2378f 100%);
+
+  /* Typography */
+  --font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --fs-hero: clamp(3.5rem, 2rem + 6.5vw, 6rem); /* 56–96px */
+  --fs-section: clamp(2.5rem, 1.6rem + 3.6vw, 4rem); /* 40–64px */
+  --fs-tile: clamp(2rem, 1.4rem + 2.6vw, 3.5rem);
+  --fs-card: 1.5rem;
+  --fs-lead: clamp(1.1875rem, 1rem + 0.6vw, 1.75rem); /* 19–28px */
+  --fs-body: clamp(1.0625rem, 1rem + 0.25vw, 1.3125rem); /* 17–21px */
+  --fs-small: 0.875rem;
+  --fs-nav: 0.8125rem; /* 13px */
+  --lh-body: 1.47;
+  --lh-tight: 1.07;
+  --ls-hero: -0.03em;
+  --ls-heading: -0.015em;
+  --fw-heading: 650;
+
+  /* Layout */
+  --width-text: 980px;
+  --width-wide: 1440px;
+  --gutter: clamp(1.25rem, 4vw, 2.75rem);
+  --section-pad: clamp(5rem, 3rem + 7vw, 10rem); /* 80–160px */
+  --nav-height: 48px;
+
+  /* Shape */
+  --radius-tile: 28px;
+  --radius-card: 18px;
+  --radius-pill: 980px;
+
+  /* Motion */
+  --reveal-distance: 32px;
+  --reveal-duration: 600ms;
+  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --hover-scale: 1.03;
+}
