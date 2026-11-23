@@ -5,7 +5,7 @@ Source: `../Projects_Shortened_rebuild/images/`. **Copy, don't move.** Keep file
 | Source | Copy to |
 |---|---|
 | title_background.png | `src/assets/site/` |
-| pixelation_greyscale, pixelation_cnn | self-supervised-unpixelation/ |
+| pixelation_cnn + pixelation_greyscale → stacked into `pixelation_stacked.png` (cover) | self-supervised-unpixelation/ |
 | aos_unet_architecture, aos_high_contrast, aos_low_contrast, aos_heavily_occluded | airborne-optical-sectioning/ |
 | cancer_cell_lines.jpg | cancer-cell-classification/ |
 | transformer_architecture | transformer-text-generation/ |

@@ -8,12 +8,10 @@ date: 2025-01-01 # TODO(owner): real date
 order: 4
 featured: true
 theme: "light"
-cover: "./pixelation_cnn.png"
+cover: "./pixelation_stacked.png"
 gallery:
-  - src: "./pixelation_greyscale.png"
-    caption: "Preprocessing: photos are converted to grayscale and a random region is pixelated."
-  - src: "./pixelation_cnn.png"
-    caption: "The CNN takes the pixelated image and reconstructs the hidden region."
+  - src: "./pixelation_stacked.png"
+    caption: "Top: the CNN reconstructs the pixelated region. Bottom: preprocessing converts photos to grayscale and pixelates a random region."
 ---
 
 ## Problem
