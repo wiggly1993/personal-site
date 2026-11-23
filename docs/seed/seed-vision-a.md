@@ -2,12 +2,12 @@
 
 ## airborne-optical-sectioning
 Computer Vision · featured · order 3 · dark
-- Detecting people hidden by forest occlusion using drone-based Airborne Optical Sectioning (AOS), 3 input images at a time.
-- Dataset: 30,000 simulated focal stacks (focal heights 0 m, 1 m, 2 m).
-- U-Net-like CNN autoencoder with skip connections (18.7M parameters).
-- Self-supervised: ground-truth images as restoration targets. Successfully removes occlusions.
-- Gallery: U-Net architecture, high-contrast, low-contrast, heavily occluded results.
-- Metrics: 30,000 focal stacks · 18.7M parameters.
+- JKU CV Lab group project (team of six), WS 2023/24. Source: owner's project report.
+- ~33k simulated scenes; AOS integrator → focal stacks of three 512×512 images (0 m, 1 m, 2 m).
+- U-Net-like CNN autoencoder, 6+6 levels, skip connections, 18.7M parameters.
+- Self-supervised, MSE loss, Adam, 21 epochs, 24,960 stacks (80/20). Pose head tried, didn't help, dropped.
+- Val MSE 0.80 → 0.0014; test PSNR avg 44 dB; works on real drone integrals. Untested: multiple people, animals.
+- Metrics: 24,960 training focal stacks · 18.7M parameters · 44 dB PSNR.
 
 ## self-supervised-unpixelation
 Computer Vision · featured · order 4 · light

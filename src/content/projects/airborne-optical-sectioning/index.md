@@ -4,7 +4,7 @@ subtitle: "Finding people hidden under trees with drone-based Airborne Optical S
 summary: "A self-supervised U-Net-style autoencoder (18.7M parameters) that removes forest occlusion from drone focal stacks to reveal hidden people."
 category: "Computer Vision"
 tags: ["U-Net", "Autoencoder", "Self-supervised learning", "Image restoration"]
-date: 2025-01-01 # TODO(owner): real date
+date: 2024-02-01 # approx: JKU CV Lab, winter semester 2023/24
 order: 3
 featured: true
 theme: "dark"
@@ -19,25 +19,31 @@ gallery:
   - src: "./aos_heavily_occluded.png"
     caption: "Heavily occluded scene: almost nothing visible in the inputs."
 metrics:
-  - value: "30,000"
-    label: "focal stacks"
+  - value: "24,960"
+    label: "training focal stacks"
   - value: "18.7M"
     label: "parameters"
+  - value: "44 dB"
+    label: "average PSNR"
 ---
 
 ## Problem
 
-From a drone, a person standing in a forest is mostly hidden by leaves and branches. Airborne Optical Sectioning (AOS) combines many aerial shots into images focused at different heights, but the occlusion is still there. I wanted a network that removes it.
+From a drone, someone lying, sitting or standing in a forest is basically invisible: leaves and branches cover everything. Airborne Optical Sectioning (AOS) helps by combining many aerial shots into images focused at different heights, but the occlusion is still there. For our JKU Computer Vision Lab project (a team of six, winter 2023/24), the goal was a network that removes it.
 
 ## Approach
 
-I worked with a dataset of 30,000 simulated focal stacks, each focused at 0 m, 1 m and 2 m. The network takes these 3 images at a time.
+We got about 33,000 simulated scenes. After throwing out the corrupted ones, we ran the AOS integrator to build a focal stack per scene: three 512×512 images focused at 0 m, 1 m and 2 m, one height each for lying, sitting and standing people.
 
-The model is a U-Net-like CNN autoencoder with skip connections and 18.7M parameters. Training is self-supervised: the ground-truth images serve as restoration targets, so no manual labels are needed.
+The model is a U-Net-style CNN autoencoder with 6 encoder and 6 decoder levels, skip connections and 18.7M parameters. Compared to a classic U-Net, it uses one conv per encoder block, padding to keep the image size, and more levels. Training is self-supervised: the clear ground-truth image is the target and the loss is plain MSE. The final run used 24,960 focal stacks (80/20 split), Adam and 21 epochs.
+
+At first we added a second head that predicted the person's pose and shape from the simulation parameters. It didn't help the restoration at all, so we dropped it.
 
 ## Result
 
-The network successfully removes the occlusion and reveals the people hidden underneath — in high-contrast, low-contrast and heavily occluded scenes.
+Validation MSE fell from 0.80 (no restoration) to 0.0014, and the average PSNR on unseen test scenes is 44 dB. The network finds people even where I can't spot them by eye, and shows nobody when nobody is there. It also gave clean results on real drone images.
 
-**Tech:** U-Net-style autoencoder · self-supervised image restoration
+Limits: it was trained on scenes with one person, so multiple people or animals are untested.
+
+**Tech:** U-Net-style CNN autoencoder · self-supervised image restoration · MSE loss · Adam
 <!-- TODO(owner): which framework did you use (PyTorch?). -->
