@@ -3,7 +3,7 @@ title: "Learning to Walk with PPO"
 subtitle: "Teaching a two-legged robot to walk with Proximal Policy Optimization."
 summary: "An actor-critic PPO agent learns continuous control in BipedalWalker over 3,000 episodes, with steadily rising rewards."
 category: "Reinforcement Learning"
-tags: ["PPO", "Actor-Critic", "Continuous control"]
+tags: ["PPO", "Actor-Critic", "Continuous control", "PyTorch", "Gymnasium"]
 date: 2025-01-01 # TODO(owner): real date
 order: 8
 featured: true
@@ -12,31 +12,42 @@ cover: "./ppo_training_process.png"
 gallery:
   - src: "./ppo_training_process.png"
     caption: "The PPO loop: collect a dataset, update actor and critic, reset, repeat."
-  - src: "./ppo_rewards.png"
-    caption: "Episode reward over 3,000 episodes."
 metrics:
   - value: "3,000"
     label: "episodes"
+  - value: "~300"
+    label: "evaluation score"
 ---
+
+## In short
+
+I taught a simulated two-legged robot to walk from scratch. It starts out flailing and falling over, and is only rewarded for moving forward and penalised for falling. I implemented the Proximal Policy Optimization (PPO) algorithm myself in PyTorch, and after 3,000 episodes of trial and error the robot walks steadily.
 
 ## Problem
 
-BipedalWalker is a two-legged robot that has to learn to walk over rough ground. Its actions are continuous — how much torque to put on each joint — which makes it a hard control problem.
+BipedalWalker (Gymnasium, Box2D) observes a 24-dimensional sensor vector: hull angle, velocities, joint positions and lidar readings. Each step it must output four continuous torques, one per hip and knee joint. Continuous actions rule out simple value-based methods like DQN, so the agent has to learn a stochastic policy directly.
 
 ## Approach
 
-I implemented Proximal Policy Optimization with an Actor (the policy) and a Critic (the value function). The training loop:
+PPO uses two networks. The **Actor** (policy) maps the state to a Gaussian over actions: it outputs a mean and, via softplus, a standard deviation for each joint. The **Critic** estimates the state value V(s). Both are MLPs with two hidden layers of 376 units, LayerNorm and ReLU.
 
-1. Collect transitions into a rollout buffer.
-2. Train the Actor and the Critic for 5 epochs.
-3. Compute advantages from the Critic's values and apply clipped policy-gradient updates.
-4. Clear the buffer and repeat.
+<div class="inline-figure inline-figure--wide">
 
-For continuous actions, the Actor outputs a mean and a variance. I trained for 3,000 episodes with 376 hidden units and a learning rate of 1e-5.
+![The PPO loop: collect a dataset, update actor and critic, reset, repeat](./ppo_training_process.png)
+
+</div>
+
+Training alternates between two phases. The current policy collects 4,048 transitions into a rollout buffer. Then actor and critic train on that buffer for 5 epochs in minibatches of 32, and the buffer is cleared. The advantage is the one-step TD error r + γV(s′) − V(s) with γ = 0.99. The policy loss is PPO's clipped surrogate objective (ε = 0.2), which stops a single update from moving the policy too far. The value loss is a Huber loss, and a small entropy bonus keeps exploration alive. The loss weights (1, 1, 0.0015) and a low learning rate of 1e-5 with Adam took the most tuning, along with getting right which tensors to detach from the gradient graph.
+
+<div class="inline-figure inline-figure--wide">
+
+![Episode reward over 3,000 episodes, rising steadily](./ppo_rewards.png)
+
+</div>
 
 ## Result
 
-Episode rewards rise steadily, and the agent learns to walk.
+Episode rewards rise steadily, and the final policy reached an evaluation score of around 300. The trained actor was exported to ONNX.
 
 <div class="video-pair">
   <figure>
@@ -49,5 +60,4 @@ Episode rewards rise steadily, and the agent learns to walk.
   </figure>
 </div>
 
-**Tech:** PPO · actor-critic · BipedalWalker
-<!-- TODO(owner): which framework and environment library (Gym/Gymnasium?). -->
+**Tech:** Python · PyTorch · Gymnasium (Box2D) · PPO · actor-critic · ONNX
