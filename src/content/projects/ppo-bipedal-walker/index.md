@@ -38,5 +38,16 @@ For continuous actions, the Actor outputs a mean and a variance. I trained for 3
 
 Episode rewards rise steadily, and the agent learns to walk.
 
+<div class="video-pair">
+  <figure>
+    <video src="/videos/ppo-bipedal-walker/ppo_start.mp4" autoplay muted loop playsinline controls preload="metadata" aria-label="BipedalWalker after the first training attempts"></video>
+    <figcaption>After the first attempts.</figcaption>
+  </figure>
+  <figure>
+    <video src="/videos/ppo-bipedal-walker/ppo_final.mp4" autoplay muted loop playsinline controls preload="metadata" aria-label="BipedalWalker after the improved training process"></video>
+    <figcaption>After improving the training process.</figcaption>
+  </figure>
+</div>
+
 **Tech:** PPO · actor-critic · BipedalWalker
 <!-- TODO(owner): which framework and environment library (Gym/Gymnasium?). -->
