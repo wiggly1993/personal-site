@@ -8,6 +8,10 @@ date: 2025-01-01 # TODO(owner): real date
 order: 13
 featured: false
 theme: "light"
+cover: "./vaes.png"
+gallery:
+  - src: "./vaes.png"
+    caption: "Training encodes digits into a latent space; generation samples from it and decodes new images."
 ---
 
 ## Problem

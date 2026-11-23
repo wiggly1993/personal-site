@@ -8,6 +8,12 @@ date: 2025-01-01 # TODO(owner): real date
 order: 14
 featured: false
 theme: "light"
+cover: "./cnns.png"
+gallery:
+  - src: "./cnns.png"
+    caption: "A classic CNN: convolutions and subsampling build feature maps, then fully connected layers."
+  - src: "./depth_conv.png"
+    caption: "Depthwise separable convolution: a k×k conv per channel, then a 1×1 pointwise conv. Used in the mobile CNNs."
 ---
 
 ## Problem
