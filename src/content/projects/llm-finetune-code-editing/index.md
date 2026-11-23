@@ -8,12 +8,10 @@ date: 2025-01-01 # TODO(owner): real date
 order: 1
 featured: true
 theme: "dark"
-cover: "./llm_aider_1.png"
+cover: "./llm_aider_full.png"
 gallery:
-  - src: "./llm_aider_1.png"
-    caption: "Data generation: a custom prompt sent to the DeepSeek API produces synthetic coding exercises."
-  - src: "./llm_aider_2.png"
-    caption: "Pipeline: synthetic exercises pass through a validation harness; only verified ones are used to fine-tune Qwen2.5-Coder-7B."
+  - src: "./llm_aider_full.png"
+    caption: "The full pipeline: a generation prompt goes to the DeepSeek API, the synthetic exercises pass a validation harness, and only verified ones fine-tune Qwen2.5-Coder-7B."
 metrics:
   - value: "49% → 75%"
     label: "well-formed diffs"

@@ -183,6 +183,7 @@ const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
     height: auto;
     max-height: 640px;
     border-radius: var(--radius-tile);
+    padding: clamp(0.5rem, 1.5vw, 1rem); /* keep rounded corners off the diagram */
     background: #fff;
   }
 
