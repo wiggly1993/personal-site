@@ -14,3 +14,7 @@ Seed facts per project:
 - [seed-xai.md](seed/seed-xai.md) (credit default, Connect 4)
 - [seed-rl-sequence.md](seed/seed-rl-sequence.md) (PPO, transformer, LSTM)
 - [seed-generative.md](seed/seed-generative.md) (flows, GAN, VAE, foodflation)
+
+**Media inside the text** (`index.md`, styled in `projects/[slug].astro`):
+- Small image: `<div class="inline-figure">`, blank line, `![alt](./img.jpg)`, blank line, `</div>`.
+- Two clips side by side: `<div class="video-pair">` with `<figure><video src="/videos/<slug>/x.mp4" autoplay muted loop playsinline controls></video><figcaption>…</figcaption></figure>`.

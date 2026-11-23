@@ -4,7 +4,8 @@
 personal-site/
 ├── CLAUDE.md  README.md  docs/       ← documentation
 ├── astro.config.mjs  package.json  tsconfig.json  .gitignore
-├── public/            favicon.svg, cv.pdf (optional, later)
+├── public/            favicon.svg, videos/<slug>/*.mp4, cv.pdf (optional, later)
+├── tools/             screenshot.mjs (visual-check.md)
 └── src/
     ├── config/        site.ts (name, bio, contact, nav) · sections.ts (homepage order) · categories.ts
     ├── content.config.ts              ← Zod schema, "projects" collection
