@@ -8,6 +8,10 @@ date: 2025-01-01 # TODO(owner): real date
 order: 11
 featured: false
 theme: "light"
+cover: "./flows2.png"
+gallery:
+  - src: "./flows2.png"
+    caption: "The flow maps between Gaussian noise and MNIST digits, forwards and in reverse."
 ---
 
 ## Problem

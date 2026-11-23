@@ -8,6 +8,10 @@ date: 2025-01-01 # TODO(owner): real date
 order: 12
 featured: false
 theme: "light"
+cover: "./gans_neural_networks.png"
+gallery:
+  - src: "./gans_neural_networks.png"
+    caption: "The generator turns random noise into fake digits; the discriminator judges real versus fake."
 ---
 
 ## Problem
