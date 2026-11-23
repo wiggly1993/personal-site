@@ -7,7 +7,7 @@ Explainable AI & Data Viz · featured · order 6 · light
 - Random Forest classifier.
 - SHAP for global feature importance, LIME for individual explanations, Partial Dependence Plots, counterfactual exploration via UMAP.
 - Result: PAY1 (most recent payment status) was the dominant predictor across all methods.
-- From team presentation: team of four; grid search on F1; 5th method global surrogate tree (root split PAY_1); PAY_1 = −1 on time, 1–9 months late; PDP jump at 2→3 months; demographics flat. Counterfactuals (DiCE + UMAP): red = default; PAY_1 change reaches main red region, other features only an implausible island. F1 0.50 omitted on purpose.
+- From presentation: team of four; F1 grid search; surrogate tree; PAY_1 −1 = on time, 1–9 = months late; PDP jump 2→3; demographics flat. DiCE+UMAP: red = default; PAY_1 change reaches main red region, others an implausible island. F1 0.50 omitted.
 
 ## connect4-dimensionality-reduction
 Explainable AI & Data Viz · order 7
@@ -15,3 +15,4 @@ Explainable AI & Data Viz · order 7
 - Recorded thousands of moves from AI-vs-random games; 42 board positions per state.
 - UMAP and t-SNE compress states to 2D.
 - UMAP shows how game complexity changes over time; t-SNE trajectories show game paths coloured by winner.
+- From notebook: DQN vs random, random vs random, 1,000 games each; one-hot; t-SNE, UMAP, PCA; Dash hover. States fan out, then converge; DQN fixed opening, clustered wins.
