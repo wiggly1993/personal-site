@@ -8,6 +8,10 @@ date: 2025-01-01 # TODO(owner): real date
 order: 2
 featured: true
 theme: "light"
+cover: "./llm_agent_1.png"
+gallery:
+  - src: "./llm_agent_1.png"
+    caption: "The agent loop: the LLM calls tools, results flow back into the context, and the context feeds the next LLM call."
 metrics:
   - value: "100%"
     label: "golden-task accuracy"

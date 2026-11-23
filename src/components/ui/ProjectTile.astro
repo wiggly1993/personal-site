@@ -52,13 +52,10 @@ const href = `/projects/${project.id}/`;
   .tile {
     border-radius: var(--radius-tile);
     overflow: hidden;
-    padding: clamp(3rem, 2rem + 4vw, 5.5rem) var(--gutter) 0;
+    padding: clamp(3rem, 2rem + 4vw, 5.5rem) var(--gutter);
     text-align: center;
     background: var(--color-bg-alt);
     color: var(--color-text);
-  }
-  .tile--no-cover {
-    padding-bottom: clamp(3rem, 2rem + 4vw, 5.5rem);
   }
   .theme-dark {
     background: var(--color-bg-dark);
@@ -105,12 +102,15 @@ const href = `/projects/${project.id}/`;
     margin: clamp(2.5rem, 4vw, 3.5rem) auto 0;
     max-width: 1000px;
   }
+  /* Show the whole image, never crop: shrink tall images to fit. */
   .tile__media img {
-    width: 100%;
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
     max-height: 560px;
-    object-fit: cover;
-    object-position: top;
-    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    border-radius: var(--radius-card);
     background: #fff; /* some diagrams are transparent PNGs */
     transition: transform 0.6s var(--ease-out);
   }

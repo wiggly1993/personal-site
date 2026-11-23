@@ -133,10 +133,6 @@ const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
 <style>
   .hero {
     text-align: center;
-    padding-bottom: 0;
-  }
-  .hero:not(:has(.hero__cover)) {
-    padding-bottom: var(--section-pad);
   }
   .hero__eyebrow {
     font-size: var(--fs-small);
@@ -178,12 +174,15 @@ const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
     margin-top: clamp(3rem, 6vw, 4.5rem);
     max-width: 1080px;
   }
+  /* Show the whole image, never crop. */
   .hero__cover img {
-    width: 100%;
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
     max-height: 640px;
-    object-fit: cover;
-    object-position: top;
-    border-radius: var(--radius-tile) var(--radius-tile) 0 0;
+    border-radius: var(--radius-tile);
     background: #fff;
   }
 
