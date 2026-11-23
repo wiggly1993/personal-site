@@ -16,3 +16,4 @@ Computer Vision · featured · order 4 · light
 - Random rectangular regions replaced with block averages.
 - Simple 9-layer CNN with 128 channels (not a U-Net). Original pixels are the ground truth.
 - Unpixelates images it has never seen.
+- From owner's code (ext. SSD): PyTorch; ~35k self-collected photos; rect 4–32 px, blocks 4–16; 3×3 kernels, BN, ReLU; masked MSE; Adam, 80/20, Apple GPU, early stopping; benchmark 6,635 images, RMSE. Score unknown.

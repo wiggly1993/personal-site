@@ -3,6 +3,7 @@
 - One folder per project: `src/content/projects/<slug>/index.md`.
 - Body: short narrative in the owner's voice (first person, plain English): **Problem → Approach → Result**, 120–250 words, plus a "Tech" line.
 - Use only the facts in the seed files. **Never invent numbers, links or claims.**
+- Never name the university, courses, assignments or challenge servers. Say "we" for team work.
 - Mark missing info as `<!-- TODO(owner): ... -->`.
 - Extra detail may be found in `../Projects_Shortened_rebuild/Projects_Shortened.tex` / `.pdf` (read-only).
 
