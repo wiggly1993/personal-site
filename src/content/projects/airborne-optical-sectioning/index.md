@@ -8,9 +8,9 @@ date: 2025-01-01 # TODO(owner): real date
 order: 3
 featured: true
 theme: "dark"
-cover: "./aos_unet_architecture.png"
+cover: "./aos_unet_architecture_upscaled.png"
 gallery:
-  - src: "./aos_unet_architecture.png"
+  - src: "./aos_unet_architecture_upscaled.png"
     caption: "U-Net-like encoder–decoder with skip connections."
   - src: "./aos_high_contrast.png"
     caption: "High-contrast scene: three focal-stack inputs, the network's output and the ground truth."
