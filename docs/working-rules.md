@@ -1,6 +1,7 @@
 # Working rules
 
 - **Environment first:** never install globally; every command starts with `source .venv/bin/activate &&`. Full details: [environment.md](environment.md).
+- **Keep original images:** never delete, overwrite or rename an original image (source folder or project folder) unless the owner explicitly says so. Merged or resized versions are new files beside the originals.
 - **Ask before:** pushing, deleting files, adding any dependency not listed in [tech-stack.md](tech-stack.md), or changing the schema.
 - Small, focused commits with clear messages.
 - After visual changes, run the dev server and check the result before saying "done".

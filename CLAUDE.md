@@ -7,6 +7,7 @@ Static Apple-style portfolio of AI/deep-learning projects. Astro + plain CSS, ho
 - Use only the local `.venv`. Start every Bash command with `source .venv/bin/activate &&` (Node/npm via nodeenv; check: `which node && node -v`).
 - `.venv` stays in `.gitignore`.
 - No `gh`: give manual github.com + `git remote add` commands.
+- Keep original images unless the owner explicitly says otherwise.
 - Ask before pushing, deleting, new dependencies, schema changes.
 - Never fabricate facts; use `TODO(owner)`. Docs ≤ 200 words each.
 - More: `docs/working-rules.md`, `docs/environment.md`
