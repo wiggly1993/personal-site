@@ -19,8 +19,9 @@ Source: `../Projects_Shortened_rebuild/images/`. **Copy, don't move.** Destinati
 | "GANs neural networks.png" → gans_neural_networks.png | gan-mnist/ |
 | VAEs → vaes | vae-generative-modeling/ |
 | CNNs → cnns (cover), Depth_Conv → depth_conv | deep-learning-foundations/ |
+| LSTM → lstm | lstm-text-generation/ |
 | jku_lit_logo.pdf | Don't copy unless owner says so (then SVG for About). |
 
-No images yet (LSTM) → typographic tiles.
+Projects without images → typographic tiles.
 
 Check images first. Never crop. Combine images with a Swift/CoreGraphics script (no installs). Resize copies to ≤2500px wide. Keep originals out of `public/` so Astro optimizes them.

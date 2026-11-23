@@ -8,6 +8,10 @@ date: 2025-01-01 # TODO(owner): real date
 order: 10
 featured: false
 theme: "light"
+cover: "./lstm.png"
+gallery:
+  - src: "./lstm.png"
+    caption: "An LSTM cell: forget, input and output gates control the cell state (memory) and the hidden state."
 ---
 
 ## Problem
