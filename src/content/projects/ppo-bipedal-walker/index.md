@@ -15,8 +15,6 @@ gallery:
 metrics:
   - value: "3,000"
     label: "episodes"
-  - value: "~300"
-    label: "evaluation score"
 ---
 
 ## In short
@@ -47,7 +45,7 @@ Training alternates between two phases. The current policy collects 4,048 transi
 
 ## Result
 
-Episode rewards rise steadily, and the final policy reached an evaluation score of around 300. The trained actor was exported to ONNX.
+The episode reward climbs from around −100, when the robot keeps falling over, to about +100 by episode 3,000. The occasional sharp dips are episodes where it still falls. The trained actor was exported to ONNX.
 
 <div class="video-pair">
   <figure>
