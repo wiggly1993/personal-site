@@ -16,5 +16,5 @@ Seed facts per project:
 - [seed-generative.md](seed/seed-generative.md) (flows, GAN, VAE, foodflation)
 
 **Media inside the text** (`index.md`, styled in `projects/[slug].astro`):
-- Small image: `<div class="inline-figure">`, blank line, `![alt](./img.jpg)`, blank line, `</div>`.
+- Small image: `<div class="inline-figure">`, blank line, `![alt](./img.jpg)`, blank line, `</div>`. Add `inline-figure--wide` for diagrams (640px instead of 320px).
 - Two clips side by side: `<div class="video-pair">` with `<figure><video src="/videos/<slug>/x.mp4" autoplay muted loop playsinline controls></video><figcaption>…</figcaption></figure>`.

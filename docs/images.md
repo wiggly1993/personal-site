@@ -6,7 +6,7 @@ Source: `../Projects_Shortened_rebuild/images/`. **Copy, don't move.** Destinati
 |---|---|
 | title_background.png | `src/assets/site/` |
 | pixelation_greyscale + pixelation_cnn → `pixelation_stacked.png` | self-supervised-unpixelation/ |
-| aos_unet_architecture_upscaled (resized), aos_high_contrast, aos_low_contrast, aos_heavily_occluded | airborne-optical-sectioning/ |
+| aos_unet_architecture_upscaled (resized), aos_high_contrast, aos_low_contrast, aos_heavily_occluded; cover aos_inputs_banner (report PDF) | airborne-optical-sectioning/ |
 | cancer_cell_lines.jpg | cancer-cell-classification/ |
 | transformer_architecture | transformer-text-generation/ |
 | connect4.jpg, connect4_umap, connect4_tsne | connect4-dimensionality-reduction/ |

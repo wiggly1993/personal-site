@@ -8,12 +8,10 @@ date: 2024-02-01 # approx: JKU CV Lab, winter semester 2023/24
 order: 3
 featured: true
 theme: "dark"
-cover: "./aos_unet_architecture_upscaled.png"
+cover: "./aos_inputs_banner.png"
 gallery:
-  - src: "./aos_unet_architecture_upscaled.png"
-    caption: "U-Net-like encoder–decoder with skip connections."
-  - src: "./aos_high_contrast.png"
-    caption: "High-contrast scene: three focal-stack inputs, the network's output and the ground truth."
+  - src: "./aos_inputs_banner.png"
+    caption: "Three drone focal-stack images of a forest, focused at 0 m, 1 m and 2 m, with a person hidden under the trees."
   - src: "./aos_low_contrast.png"
     caption: "Low-contrast scene: the person is still recovered."
   - src: "./aos_heavily_occluded.png"
@@ -39,9 +37,21 @@ The model is a U-Net-style CNN autoencoder with 6 encoder and 6 decoder levels, 
 
 At first we added a second head that predicted the person's pose and shape from the simulation parameters. It didn't help the restoration at all, so we dropped it.
 
+<div class="inline-figure inline-figure--wide">
+
+![U-Net-like encoder–decoder: six levels down to 1024 channels, six levels back up, with skip connections](./aos_unet_architecture_upscaled.png)
+
+</div>
+
 ## Result
 
 Validation MSE fell from 0.80 (no restoration) to 0.0014, and the average PSNR on unseen test scenes is 44 dB. The network finds people even where I can't spot them by eye, and shows nobody when nobody is there. It also gave clean results on real drone images.
+
+<div class="inline-figure inline-figure--wide">
+
+![High-contrast scene: the three focal-stack inputs, the network's output (PSNR 51.27 dB) and the ground truth](./aos_high_contrast.png)
+
+</div>
 
 Limits: it was trained on scenes with one person, so multiple people or animals are untested.
 

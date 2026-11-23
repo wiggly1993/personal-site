@@ -234,6 +234,10 @@ const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
     height: auto;
     border-radius: var(--radius-tile);
   }
+  /* Bigger variant for diagrams or result panels that need to stay readable. */
+  .prose :global(.inline-figure--wide img) {
+    max-width: 640px;
+  }
 
   /* Two short clips side by side (stacked on phones), e.g. before/after training. */
   .prose :global(.video-pair) {
