@@ -8,7 +8,7 @@ date: 2025-01-01 # TODO(owner): real date
 order: 7
 featured: false
 theme: "light"
-cover: "./connect4.jpg"
+cover: "./connect4_tsne.png"
 gallery:
   - src: "./connect4_umap.png"
     caption: "UMAP: how game complexity changes with the turn number."
@@ -19,6 +19,12 @@ gallery:
 ## Problem
 
 A Connect 4 board has 42 positions, so every game state is a point in a 42-dimensional space. That is impossible to look at directly. I wanted to see how games unfold.
+
+<div class="inline-figure">
+
+![A Connect 4 board: 7 columns by 6 rows of red and yellow discs](./connect4.jpg)
+
+</div>
 
 ## Approach
 

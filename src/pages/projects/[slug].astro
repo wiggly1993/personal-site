@@ -217,6 +217,24 @@ const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
     font-size: 1rem;
   }
 
+  /* A small image inside the text, e.g. a photo in the Problem section. */
+  .prose :global(.inline-figure) {
+    margin: 2rem 0;
+  }
+  .prose :global(.inline-figure p) {
+    margin: 0;
+    padding: 0;
+    border: 0; /* not the "Tech:" line style */
+  }
+  .prose :global(.inline-figure img) {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border-radius: var(--radius-tile);
+  }
+
   /* Two short clips side by side (stacked on phones), e.g. before/after training. */
   .prose :global(.video-pair) {
     display: grid;
