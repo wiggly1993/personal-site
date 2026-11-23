@@ -15,8 +15,8 @@ Source: `../Projects_Shortened_rebuild/images/`. **Copy, don't move.** Keep file
 | llm_aider_1 + llm_aider_2 → stacked into `llm_aider_stacked.png` (chain version kept as `llm_aider_chain_backup.png`, unused) | llm-finetune-code-editing/ |
 | llm_agent_1 | llm-agent-from-scratch/ |
 | `../videos/` PPO_start + PPO_final .mp4 → `public/videos/ppo-bipedal-walker/` as ppo_start/ppo_final (in Result via `.video-pair`, not gallery) | public/ |
-| `../AI_Projects/1000ppi/` Flows2.png → flows2.png (resized) | normalising-flows/ |
-| `../AI_Projects/1000ppi/` "GANs neural networks.png" → gans_neural_networks.png | gan-mnist/ |
+| Flows2.png → flows2.png (resized) | normalising-flows/ |
+| "GANs neural networks.png" → gans_neural_networks.png | gan-mnist/ |
 | jku_lit_logo.pdf | Don't copy unless owner says so (then SVG for About). |
 
 No images yet (VAE, LSTM, foundations) → typographic tiles.
