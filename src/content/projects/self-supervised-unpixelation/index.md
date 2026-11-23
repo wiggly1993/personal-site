@@ -11,7 +11,7 @@ theme: "light"
 cover: "./pixelation_stacked.png"
 gallery:
   - src: "./pixelation_stacked.png"
-    caption: "Top: the CNN reconstructs the pixelated region. Bottom: preprocessing converts photos to grayscale and pixelates a random region."
+    caption: "Top: preprocessing converts photos to grayscale and pixelates a random region. Bottom: the CNN reconstructs the pixelated region."
 ---
 
 ## Problem
