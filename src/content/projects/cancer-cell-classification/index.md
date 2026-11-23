@@ -1,7 +1,7 @@
 ---
 title: "Machine Learning for Cells & Molecules"
-subtitle: "Three challenges: classifying cancer cells, predicting toxicity, and inventing new molecules."
-summary: "A Wide ResNet tells 9 cancer cell lines apart, Random Forests predict toxicity across 11 assays, and an LSTM writes new valid molecules."
+subtitle: "Three separate projects: classifying cancer cells, predicting toxicity, and inventing new molecules."
+summary: "Three separate projects: a Wide ResNet tells 9 cancer cell lines apart, Random Forests predict toxicity, and an LSTM writes new molecules."
 category: "Computer Vision"
 tags: ["Wide ResNet", "Transfer learning", "Microscopy", "Random Forest", "RDKit", "LSTM", "Molecule generation", "PyTorch", "Keras"]
 date: 2025-01-01 # TODO(owner): real date
@@ -27,17 +27,23 @@ metrics:
 
 ## In short
 
-Three problems from biology and chemistry, each scored on a hidden test set. I classified microscopy images of cancer cells into 9 cell lines, predicted from a molecule's structure whether it is toxic, and trained a model that invents new, valid molecules character by character.
+Three separate projects, collected here because they all apply machine learning to biology and chemistry. Each has its own dataset, its own model and its own score on a hidden test set:
+
+1. **Cancer cell lines** — classify microscopy images into 9 cell lines.
+2. **Toxicity** — predict from a molecule's structure whether it is toxic.
+3. **Molecule generation** — invent new, valid molecules character by character.
 
 ## Cancer cell lines from microscopy
 
-Each sample is a microscopy image in three fluorescence channels — nucleus, microtubules and endoplasmic reticulum — and the task is to say which of 9 cancer cell lines it shows. The 9,632 training images were imbalanced, from about 600 to 2,100 per class.
+Each sample is a microscopy image in three fluorescence channels — nucleus, microtubules and endoplasmic reticulum — and the task is to say which of 9 cancer cell lines it shows. There are 9,632 training images, spread very unevenly over the 9 classes.
 
 <div class="inline-figure inline-figure--wide">
 
 ![Images per cell line before upsampling: from about 600 to 2,100](./cell_class_distribution.png)
 
 </div>
+
+Every bar is one cell line and how many training images it has. RT4 on the right has about 3.5× as many as A549 on the left, and that gap is the problem: a model can score well by leaning towards the big classes and quietly giving up on the small ones.
 
 I stacked the three channels into one RGB image and upsampled the rare classes until every class had 2,100 images, then split 80/20. The training set got heavy augmentation: horizontal and vertical flips, rotations, small shifts and shears, contrast jitter and Gaussian blur. The model is an ImageNet-pre-trained Wide ResNet-101-2 whose final layer I replaced with 9 outputs, fine-tuned end to end with Adam and cross-entropy, stopping once validation accuracy stopped improving. Both losses fell smoothly, with validation below training because augmentation only ran on the training set.
 
