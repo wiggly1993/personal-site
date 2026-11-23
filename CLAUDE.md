@@ -19,5 +19,5 @@ Static Apple-style portfolio of AI/deep-learning projects. Astro + plain CSS, ho
 - `homepage-sections.md` · `images.md`
 - `content-writing-rules.md` → `seed/*.md` (facts per project)
 - `first-run-tasks.md` — progress checklist
-- `deploy-cloudflare.md`
+- `deploy-cloudflare.md` · `visual-check.md` — screenshot workflow
 - `../README.md` — add/remove a project · `../AGENTS.md` — Astro dev tips
