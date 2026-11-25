@@ -30,5 +30,11 @@ The loss is a masked MSE: it only counts the pixels that were hidden, so the net
 
 The network unpixelates images it has never seen. The final benchmark was 6,635 unseen pixelated images, scored by RMSE against baseline models.
 
+<div class="inline-figure inline-figure--wide">
+
+![The CNN takes an image with a pixelated region and reconstructs the hidden pixels](./pixelation_cnn.png)
+
+</div>
+
 **Tech:** Python · PyTorch · NumPy · fully convolutional CNN · masked MSE · self-supervised image restoration
 <!-- TODO(owner): add your RMSE / benchmark result if you remember it. -->
