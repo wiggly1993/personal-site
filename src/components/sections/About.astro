@@ -1,5 +1,5 @@
 ---
-// Short bio + education. Text lives in src/config/site.ts.
+// Short bio + CV overview. Text lives in src/config/site.ts.
 import Reveal from "../ui/Reveal.astro";
 import { site } from "../../config/site";
 ---
@@ -8,11 +8,16 @@ import { site } from "../../config/site";
   <Reveal class="container about">
     <h2 id="about-title" class="section-title">About me.</h2>
     <p class="section-lead about__bio">{site.bio || site.tagline}</p>
-    <div class="about__edu">
-      <p class="about__label">Education</p>
-      <p class="about__school">{site.education.school}</p>
-      {site.education.detail && <p class="about__detail">{site.education.detail}</p>}
-    </div>
+    <ol class="about__cv" role="list">
+      {site.cv.map((item) => (
+        <li>
+          <span class="about__period">{item.period}</span>
+          <span class="about__role">{item.role}</span>
+          <span class="about__place">{item.place}</span>
+        </li>
+      ))}
+    </ol>
+    {site.languages && <p class="about__langs"><span class="about__label">Languages</span> {site.languages}</p>}
   </Reveal>
 </section>
 
@@ -23,28 +28,56 @@ import { site } from "../../config/site";
   .about__bio {
     max-width: 36ch;
   }
-  .about__edu {
-    display: inline-block;
-    margin-top: 3rem;
-    padding: 2rem 2.5rem;
+  .about__cv {
+    list-style: none;
+    margin: 3rem auto 0;
+    padding: 0;
+    max-width: 40rem;
+    text-align: left;
     border-radius: var(--radius-card);
     background: var(--color-bg-alt);
+  }
+  .about__cv li {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    column-gap: 1.5rem;
+    padding: 1.25rem 2rem;
+  }
+  .about__cv li + li {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .about__period {
+    grid-row: span 2;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    padding-top: 0.15rem;
+  }
+  .about__role {
+    font-weight: 600;
+    letter-spacing: var(--ls-heading);
+  }
+  .about__place {
+    color: var(--color-text-secondary);
+  }
+  .about__langs {
+    margin-top: 1.5rem;
+    color: var(--color-text-secondary);
   }
   .about__label {
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--color-text-secondary);
+    margin-right: 0.5rem;
   }
-  .about__school {
-    margin-top: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: var(--ls-heading);
-  }
-  .about__detail {
-    margin-top: 0.25rem;
-    color: var(--color-text-secondary);
+  @media (max-width: 560px) {
+    .about__cv li {
+      grid-template-columns: 1fr;
+      padding: 1rem 1.25rem;
+    }
+    .about__period {
+      grid-row: auto;
+    }
   }
 </style>

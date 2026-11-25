@@ -3,9 +3,10 @@
 import Reveal from "../ui/Reveal.astro";
 import { site } from "../../config/site";
 
-const { email, github, linkedin } = site.contact;
+const { email, phone, github, linkedin } = site.contact;
 const links = [
   email && { label: "Email", value: email, href: `mailto:${email}` },
+  phone && { label: "Phone", value: phone, href: `tel:${phone.replace(/\s/g, "")}` },
   github && { label: "GitHub", value: github.replace(/^https?:\/\/(www\.)?/, ""), href: github },
   linkedin && { label: "LinkedIn", value: linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: linkedin },
 ].filter((l): l is { label: string; value: string; href: string } => Boolean(l));
