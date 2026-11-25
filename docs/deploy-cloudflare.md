@@ -8,4 +8,4 @@ The owner connects the repo in the Cloudflare dashboard. Steps:
 4. Environment variable: `NODE_VERSION` = `26` (`.nvmrc` also pins 26; Astro needs ≥ 22.23.4).
 5. **Save and Deploy.** Every push to `main` redeploys automatically.
 6. Custom domain: project → **Custom domains** → add the domain (€10–15/year), follow the DNS prompts.
-7. After the domain is live, set `site` in `astro.config.mjs` to the real URL (needed for sitemap and OG tags).
+7. After the domain is live, set `site` in `astro.config.mjs` to the real URL (needed for sitemap and OG tags). Live: https://benjablonski.dev (Cloudflare Worker `personal-site`, domain bought via Cloudflare Registrar).
