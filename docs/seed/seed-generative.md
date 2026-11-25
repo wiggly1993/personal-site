@@ -4,6 +4,7 @@
 Generative Models · order 11
 - MNIST digits flattened to 784-D. Invertible coupling layers, change-of-variables formula, trained by maximum likelihood (NLL with Jacobian log-determinants).
 - Sample a Gaussian, invert through the flow, get new digits.
+- PyTorch. Jacobian checked with autograd. 5 additive coupling layers (halves swapped each layer, log-det = 0), conditioner MLP 392→256→392, Adam lr 1e-3, 9 epochs. No score.
 
 ## gan-mnist
 Generative Models · order 12
