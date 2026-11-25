@@ -14,3 +14,4 @@ Collection of smaller CNN projects:
 - ResNet-style skip connections for deeper nets.
 - Lightweight mobile CNNs (separable convolutions plus attention, under 30K parameters).
 - Training tooling (TensorBoard, progress bars, checkpointing, hyperparameter search).
+- PyTorch. Also MLP vs. CNN on MNIST. VGG-11 frozen, new classifier (global avg pool) trained with SGD. Pre-activation residual blocks. Efficient CNN: 4 blocks of depthwise separable convs + BatchNorm + skip + SE, <30K params, target CE < 0.9 on CIFAR-10 in 10 epochs (no result recorded).

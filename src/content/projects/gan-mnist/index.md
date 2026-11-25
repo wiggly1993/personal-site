@@ -3,7 +3,7 @@ title: "GANs & Adversarial Examples"
 subtitle: "A generator learns to fool a discriminator — and I learn to fool classifiers."
 summary: "A GAN on MNIST where a generator learns to fool a discriminator, plus projected-gradient-ascent adversarial examples that fool classifiers."
 category: "Generative Models"
-tags: ["GAN", "Adversarial examples", "Projected gradient ascent", "MNIST"]
+tags: ["GAN", "Adversarial examples", "Projected gradient ascent", "MNIST", "PyTorch"]
 date: 2025-01-01 # TODO(owner): real date
 order: 12
 featured: false
@@ -14,19 +14,30 @@ gallery:
     caption: "The generator turns random noise into fake digits; the discriminator judges real versus fake."
 ---
 
+## In short
+
+I built a GAN in PyTorch that learns to draw handwritten digits, and on the way I looked at the other meaning of "adversarial": how easily a trained classifier can be fooled.
+
 ## Problem
 
-Generative adversarial networks learn by competition. I wanted to build one, and also to see the other side of "adversarial": how easily a trained classifier can be fooled.
+A classifier that recognises digits doesn't really *understand* them. Small, targeted changes to an image can make it fail. The same trick, aimed at the right network, can also be used to create new images.
 
 ## Approach
 
-On MNIST, I set up the min-max game. A discriminator learns to separate real digits from fakes. A generator — a decoder that maps latent vectors to images — learns to fool it.
+**Fooling a classifier.** I trained a small CNN on MNIST, then attacked it with projected gradient ascent: nudge the pixels in the direction that increases the loss, but keep every change within a small budget so the digit still looks like itself.
 
-Separately, I used projected gradient ascent to craft adversarial examples: inputs changed just enough to make a classifier get them wrong.
+**From attacks to generation.** Next I trained a discriminator to tell real digits from fakes. The fakes start as noise, and after every epoch the same attack pushes them to look more "real". Better fakes make a stronger discriminator, and the other way round.
+
+<div class="inline-figure inline-figure--wide">
+
+![The generator turns random noise into fake digits; the discriminator judges real versus fake](./gans_neural_networks.png)
+
+</div>
+
+**The GAN.** Finally, a generator network replaces the attack. It turns random vectors into images and is trained to fool the discriminator, while the discriminator is trained to catch it: a min-max game. Each network is updated only with its own loss.
 
 ## Result
 
-The generator learns to produce digits that fool the discriminator, and the adversarial examples fool classifiers.
+Small, bounded changes to the pixels are enough to make the classifier get digits wrong. The GAN learns to turn random noise into new digits.
 
-**Tech:** GAN · projected gradient ascent
-<!-- TODO(owner): which framework did you use? -->
+**Tech:** Python · PyTorch · CNNs · projected gradient ascent · GAN
