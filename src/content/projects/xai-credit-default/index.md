@@ -38,4 +38,10 @@ For the counterfactuals, we mapped the forest's decisions onto a 2D UMAP plane: 
 
 All five methods agree: PAY_1 dominates. The surrogate tree splits on it first, and the default probability jumps when the delay goes from two to three months. Gender, education and marital status have almost no effect, so we found no discriminatory behaviour. The counterfactuals also exposed blind spots where the model extrapolates from sparse data.
 
+<div class="inline-figure inline-figure--wide">
+
+![Counterfactuals in UMAP space. Red = model predicts default, blue = no default. Changing PAY_1 (red dot) reaches the main default region; changing other features (purple) only reaches a small, implausible island](./credit_counterfactual_umap.png)
+
+</div>
+
 **Tech:** Random Forest · scikit-learn · SHAP · LIME · DiCE · UMAP · Partial Dependence Plots

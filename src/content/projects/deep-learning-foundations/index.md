@@ -42,6 +42,4 @@ Before the bigger projects, I needed solid fundamentals: how to adapt existing a
 
 A set of reusable building blocks and training tools that the later projects build on.
 
-<!-- TODO(owner): add results (e.g. CIFAR-10 accuracy of the efficient CNN). -->
-
 **Tech:** Python · PyTorch · VGG · residual networks · CIFAR-10 · TensorBoard
