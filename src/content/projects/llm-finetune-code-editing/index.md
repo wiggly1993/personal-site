@@ -41,6 +41,12 @@ Then I wrote a test harness that runs every sample with its language's own test 
 
 That left 2,777 verified samples. Most rejects were solutions that failed their own tests.
 
+<div class="inline-figure inline-figure--wide">
+
+![Top: a generation prompt goes to the DeepSeek API, which produces synthetic coding exercises. Bottom: the exercises pass a validation harness, and only verified ones fine-tune Qwen2.5-Coder-7B](./llm_aider_stacked.png)
+
+</div>
+
 For training I used QLoRA (4-bit, rank 16) with Unsloth on rented Vast.ai GPUs, and wrapped every input in Aider's real prompt layout so the model learned the exact format it would see at evaluation time.
 
 ## Result
