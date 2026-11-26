@@ -69,7 +69,7 @@ const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
       </Reveal>
       {
         cover && (
-          <Reveal class="container-wide hero__cover">
+          <Reveal class={`container-wide hero__cover hero__cover--${project.id}`}>
             <Image
               src={cover}
               alt={coverAlt(project)}
@@ -185,6 +185,11 @@ const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
     border-radius: var(--radius-tile);
     padding: clamp(0.5rem, 1.5vw, 1rem); /* keep rounded corners off the diagram */
     background: #fff;
+  }
+  /* Per-project cover size: this diagram is 25% smaller than the default. */
+  .hero__cover--llm-agent-from-scratch img {
+    max-width: 75%;
+    max-height: 480px;
   }
 
   /* Markdown body */
